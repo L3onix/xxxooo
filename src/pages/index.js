@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
+import { useRouter } from "next/router";
 import {
   Center,
   Flex,
@@ -35,6 +36,7 @@ export default function Home() {
     { id: 9, colorScheme: 'gray', icon: <QuestionOutlineIcon />, clicked: false}
   ]);
   const [clickNumber, setClickNumber] = useState(1);
+  const router = useRouter();
 
   function setClickedButton(id, color, icon) {
     setButtons((prevButtons) => {
@@ -94,8 +96,9 @@ export default function Home() {
       } else {
         console.log('player 1 ganhou!');
       }
+      router.push('/win')
     }
-  }, [buttons])
+  }, [buttons, router])
 
   return (
     <Flex h='100vh' justifyContent='center' alignItems='center' bg='#212529'>
